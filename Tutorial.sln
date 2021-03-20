@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commands", "Commands\Comman
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVVM", "MVVM\MVVM.csproj", "{752F5F00-8D2B-402E-9F63-E18D26B1CAC7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenGL", "OpenGL\OpenGL.csproj", "{12606596-C2A6-4ED7-B045-B27D4A324034}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{752F5F00-8D2B-402E-9F63-E18D26B1CAC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{752F5F00-8D2B-402E-9F63-E18D26B1CAC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{752F5F00-8D2B-402E-9F63-E18D26B1CAC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12606596-C2A6-4ED7-B045-B27D4A324034}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12606596-C2A6-4ED7-B045-B27D4A324034}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12606596-C2A6-4ED7-B045-B27D4A324034}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12606596-C2A6-4ED7-B045-B27D4A324034}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
