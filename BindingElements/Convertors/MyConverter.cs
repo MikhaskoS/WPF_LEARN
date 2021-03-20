@@ -10,7 +10,8 @@ namespace BindingElements.Sample
 {
     // https://metanit.com/sharp/wpf/11.3.php
 
-    [ValueConversion (typeof(string), typeof(string))]
+    // указываем из какоготипа в какой конвертируем (VS будет помогать при отобр доступных конвертеров)
+    [ValueConversion (typeof(string), typeof(string))]   
     class MyConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -27,6 +28,7 @@ namespace BindingElements.Sample
         {
             // получаем баксы, переводим в рубли
             decimal k = 62;
+            //decimal price = System.Convert.ChangeType(value, targetType);
             decimal price = System.Convert.ToDecimal(value) * k;
             return price.ToString();
         }

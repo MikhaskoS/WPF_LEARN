@@ -55,6 +55,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Convertors\BoolToVisibility.cs" />
+    <Compile Include="Convertors\DebugConverter.cs" />
     <Compile Include="Sample\ConverterSample.xaml.cs">
       <DependentUpon>ConverterSample.xaml</DependentUpon>
     </Compile>
@@ -67,7 +69,7 @@
     <Compile Include="Sample\MultipleBindings.xaml.cs">
       <DependentUpon>MultipleBindings.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Sample\MyConverter.cs" />
+    <Compile Include="Convertors\MyConverter.cs" />
     <Compile Include="Sample\ObservableINotify.xaml.cs">
       <DependentUpon>ObservableINotify.xaml</DependentUpon>
     </Compile>
