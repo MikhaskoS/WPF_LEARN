@@ -26,8 +26,5 @@
     <StackPanel Margin="5">
         <Button Padding="5" Margin="5" Content="Настраиваемая кнопка" 
               Style="{StaticResource BigFontButton}"/>
-        
-        
-        
     </StackPanel>
 </Window>
