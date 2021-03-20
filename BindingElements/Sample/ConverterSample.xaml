@@ -4,7 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BindingElements.Sample"
-        xmlns:c="clr-namespace:BindingElements.Sample"    
+        xmlns:c="clr-namespace:BindingElements.Sample"   
+        xmlns:b="clr-namespace:BindingElements.Convertors"
     Title="ConverterSample" Height="216" Width="470" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <c:MyConverter x:Key="myConverter"></c:MyConverter>
@@ -39,6 +40,30 @@
                 </Binding.Converter>
             </Binding>
         </TextBox>
-
+        <!--Bool to Visibility:  через TextBox.Visibility -->
+        <CheckBox Content="Отобразить" HorizontalAlignment="Left" Margin="35,133,0,0" VerticalAlignment="Top"
+                  Name="VisibilityText" IsChecked="True" />
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="143,131,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120">
+            <TextBox.Visibility>
+                <Binding ElementName="VisibilityText"  Path="IsChecked">
+                    <Binding.Converter>
+                        <b:BoolToVisibility></b:BoolToVisibility>
+                    </Binding.Converter>
+                </Binding>
+            </TextBox.Visibility>
+        </TextBox>
+        <!--Bool to Visibility:  DataTrigger -->
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="309,131,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120">
+            <TextBox.Style>
+                <Style TargetType="TextBox">
+                    <Setter Property="Foreground" Value="Red"></Setter>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsChecked, ElementName=VisibilityText, Mode=OneWay}" Value="false" >
+                            <Setter Property="Visibility" Value="Hidden"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
     </Grid>
 </Window>
