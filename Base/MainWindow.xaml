@@ -1,0 +1,91 @@
+﻿<Window x:Class="Base.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Base"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <!-- Ресурс уровня окна -->
+        <Style x:Key="BlueButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Blue"></Setter>
+            <Setter Property="Foreground" Value="Red"></Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Button Content="Button" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                Width="175" Height="100" RenderTransformOrigin="0.5, 0.5">
+            <Button.RenderTransform>
+                <RotateTransform Angle="0" x:Name="RotateTransform"></RotateTransform>
+            </Button.RenderTransform>
+            <Button.Triggers>
+                <EventTrigger RoutedEvent="Button.Click">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <BeginStoryboard.Storyboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" 
+                                                     From="1" 
+                                                     To="0" 
+                                                     Duration="0:0:1" 
+                                                     AutoReverse="True"></DoubleAnimation>
+                                    <DoubleAnimation Storyboard.TargetName="RotateTransform"
+                                        Storyboard.TargetProperty="Angle" 
+                                                     From="1" 
+                                                     To="360" 
+                                                     Duration="0:0:1" 
+                                                     AutoReverse="True"></DoubleAnimation>
+                                </Storyboard>
+                            </BeginStoryboard.Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+            </Button.Triggers>
+        </Button>
+        <StatusBar HorizontalAlignment="Left" Height="28" VerticalAlignment="Bottom" Width="301">
+            <TextBlock>
+                <TextBlock.Foreground>
+                    <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
+                        <GradientStop Color="Aqua" Offset="0"></GradientStop>
+                        <GradientStop Color="Brown"  Offset="1"></GradientStop>
+                    </LinearGradientBrush>
+                </TextBlock.Foreground>
+                ПРОГРЕСС БАААААРРР
+            </TextBlock>
+            <ProgressBar Width="120" Height="10" Value="30" Margin="15,0,0,0"></ProgressBar>
+        </StatusBar>
+        <!--Кнопка со встроенным стилем-->
+        <Button Content="Button" HorizontalAlignment="Left" Margin="143,320,0,0" VerticalAlignment="Top" Width="75">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Background" Value="Red"></Setter>
+                </Style>
+            </Button.Style>
+        </Button>
+        <!--Кнопка со стилем, встроенным в окно-->
+        <Button Content="Button" HorizontalAlignment="Left" Margin="266,320,0,0" 
+                VerticalAlignment="Top" Width="75"
+                Style="{StaticResource BlueButtonStyle}">
+        </Button>
+
+        <!--Перемена стиля внутри компоновки-->
+        <Grid>
+            <Grid.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="Foreground" Value="Brown"></Setter>
+                </Style>
+            </Grid.Resources>
+            <Button Content="Button" HorizontalAlignment="Left" Margin="401,320,0,0" VerticalAlignment="Top" Width="75"/>
+            <Button Content="Button" HorizontalAlignment="Left" Margin="401,357,0,0" VerticalAlignment="Top" Width="75"/>
+            <Button Content="Button" HorizontalAlignment="Left" Margin="401,284,0,0" VerticalAlignment="Top" Width="75"/>
+
+        </Grid>
+        
+        <!--Стиль из словаря ресурсов-->
+        <Button Content="Button" HorizontalAlignment="Left" Margin="549,320,0,0" 
+                    VerticalAlignment="Top" Width="75"
+                    Style="{StaticResource GreenButtonStyle}"/>
+
+    </Grid>
+</Window>

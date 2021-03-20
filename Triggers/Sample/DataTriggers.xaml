@@ -1,0 +1,31 @@
+﻿<Window x:Class="Sample.DataTriggers"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sample"
+        Title="DataTriggers" Height="94.832" Width="277.174" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+        <CheckBox Name="chBox" Grid.Column="0" Content="CheckBox" 
+                  HorizontalAlignment="Center"  VerticalAlignment="Center" 
+                  Height="16"  Width="71" IsChecked="False"/>
+
+        <TextBox Grid.Column="1" HorizontalAlignment="Center"  Height="23" TextWrapping="Wrap" Text="TextBox" 
+                 VerticalAlignment="Center"  Width="120">
+            <TextBox.Style>
+                <Style TargetType="TextBox">
+                    <Setter Property="Background" Value="Aqua"></Setter>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName= chBox, Path=IsChecked}" Value="False">
+                            <Setter Property="Background" Value="BurlyWood"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+    </Grid>
+</Window>
