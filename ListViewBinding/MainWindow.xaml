@@ -7,12 +7,12 @@
         xmlns:model="clr-namespace:ListViewBinding.Models"
         xmlns:local="clr-namespace:ListViewBinding"
         Title="MainWindow" Height="450" Width="800">
-    <Grid HorizontalAlignment="Right" Width="800">
+    <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
-        <GroupBox Grid.Column="0" Header="Сотрудники">
+        <GroupBox Grid.Column="0" Header="Сотрудники" Margin="5">
             <!--<ListView x:Name="EmployeeList" 
                       ItemsSource="{x:Static data:TestData.Employees}" 
                       DisplayMemberPath="Name">
@@ -20,6 +20,7 @@
             <ListView x:Name="EmployeeList" 
                       ItemsSource="{x:Static data:TestData.Employees}" >
                 <ListView.ItemTemplate>
+                    <!--Указав тип, мы получим подсказки VS-->
                     <DataTemplate DataType="model:Employe">
                         <Border BorderThickness="1" BorderBrush="DarkCyan" CornerRadius="4" 
                                 Padding="3" Margin="0.5" Background="Wheat">
@@ -27,26 +28,60 @@
                                 <DropShadowEffect></DropShadowEffect>
                             </Border.Effect>
                             <StackPanel ToolTip="{Binding DayOfBirth}">
-                            <TextBlock Text="{Binding Id, StringFormat=id:{0}}"></TextBlock>
-                            <TextBlock Text="{Binding SurName, StringFormat=Фамилия:{0}}"></TextBlock>
-                            <TextBlock Text="{Binding Name, StringFormat=Имя:{0}}"></TextBlock>
-                            <TextBlock Text="{Binding Patronymic, StringFormat=Отчество:{0}}"></TextBlock>
-                        </StackPanel>
+                                <TextBlock Text="{Binding Id, StringFormat=id:{0}}"></TextBlock>
+                                <TextBlock Text="{Binding SurName, StringFormat=Фамилия:{0}}"></TextBlock>
+                                <TextBlock Text="{Binding Name, StringFormat=Имя:{0}}"></TextBlock>
+                                <TextBlock Text="{Binding Patronymic, StringFormat=Отчество:{0}}"></TextBlock>
+                            </StackPanel>
                         </Border>
-                      
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
         </GroupBox>
-        <GroupBox Grid.Column="1" Header="Информация о сотрудниках">
+        
+        <GroupBox Grid.Column="1" Header="Информация о сотрудниках" Margin="5">
             <Grid>
+                <Grid.Resources>
+                    <!--<Style TargetType="TextBlock">
+                        <Setter Property="FontWeight" Value="Bold"></Setter>
+                        <Setter Property="HorizontalAlignment"  Value="Right"></Setter>
+                    </Style>-->
+                    <Style TargetType="TextBlock">
+                        <Style.Triggers>
+                            <Trigger Property="Grid.Column" Value="0">
+                                <Setter Property="FontWeight" Value="Bold"></Setter>
+                                <Setter Property="HorizontalAlignment"  Value="Right"></Setter>
+                                <Setter Property="Margin"  Value="0,0,4,0"></Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Resources>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
+
+                <TextBlock Grid.Column="0" Grid.Row="0" Text="ID: "></TextBlock>
+                <TextBlock Grid.Column="0" Grid.Row="1" Text="Фамилия: "></TextBlock>
+                <TextBlock Grid.Column="0" Grid.Row="2" Text="Имя:"></TextBlock>
+                <TextBlock Grid.Column="0" Grid.Row="3" Text="Отчество: "></TextBlock>
+                <TextBlock Grid.Column="0" Grid.Row="4" Text="Дата рождения: "></TextBlock>
+                <TextBlock Grid.Column="0" Grid.Row="5" Text="Возраст: "></TextBlock>
+
+                <TextBlock Grid.Column="1" Grid.Row="0" Text="id"></TextBlock>
+                <TextBlock Grid.Column="1" Grid.Row="1" Text="surname"></TextBlock>
+                <TextBlock Grid.Column="1" Grid.Row="2" Text="name"></TextBlock>
+                <TextBlock Grid.Column="1" Grid.Row="3" Text="patronymic"></TextBlock>
+                <TextBlock Grid.Column="1" Grid.Row="4" Text="birthdate"></TextBlock>
+                <TextBlock Grid.Column="1" Grid.Row="5" Text="age"></TextBlock>
             </Grid>
         </GroupBox>
     </Grid>
