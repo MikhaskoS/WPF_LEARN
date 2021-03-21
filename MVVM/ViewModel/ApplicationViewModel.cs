@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using MVVM.View;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
@@ -7,15 +8,15 @@ namespace MVVM
 {
     class ApplicationViewModel : INotifyPropertyChanged
     {
-        private Phone selectedPhone;
+        private Phone _selectedPhone;
 
         public ObservableCollection<Phone> Phones { get; set; }
         public Phone SelectedPhone
         {
-            get { return selectedPhone; }
+            get { return _selectedPhone; }
             set
             {
-                selectedPhone = value;
+                _selectedPhone = value;
                 OnPropertyChanged("SelectedPhone");
             }
         }
@@ -45,6 +46,18 @@ namespace MVVM
                       Phones.Insert(0, phone);
                       SelectedPhone = phone;
                   }));
+            }
+        }
+        private RelayCommand newWindow;
+        public RelayCommand NewWindow
+        {
+            get {
+                return newWindow ??
+                    (newWindow = new RelayCommand(obj =>
+                    {
+                        OtherWindow wind = new OtherWindow();
+                        wind.ShowDialog();
+                    }));
             }
         }
         #endregion

@@ -12,6 +12,7 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
+        
         <GroupBox Grid.Column="0" Header="Сотрудники" Margin="5">
             <!--<ListView x:Name="EmployeeList" 
                       ItemsSource="{x:Static data:TestData.Employees}" 
@@ -39,7 +40,12 @@
             </ListView>
         </GroupBox>
         
-        <GroupBox Grid.Column="1" Header="Информация о сотрудниках" Margin="5">
+        <!-- Свойство DataContext связывает текущий GroupBox с элементом коллекции 
+        В данном случае DataContext установлен на уровне объекта
+        d:DataContext - вручную указываем для VS тип данныx для удобства работы--> 
+        <GroupBox Grid.Column="1" Header="Информация о сотрудниках" Margin="5" 
+                  DataContext="{Binding SelectedItem, ElementName=EmployeeList}" 
+                  d:DataContext="{d:DesignInstance {x:Type model:Employee}}">
             <Grid>
                 <Grid.Resources>
                     <!--<Style TargetType="TextBlock">
@@ -76,12 +82,12 @@
                 <TextBlock Grid.Column="0" Grid.Row="4" Text="Дата рождения: "></TextBlock>
                 <TextBlock Grid.Column="0" Grid.Row="5" Text="Возраст: "></TextBlock>
 
-                <TextBlock Grid.Column="1" Grid.Row="0" Text="id"></TextBlock>
-                <TextBlock Grid.Column="1" Grid.Row="1" Text="surname"></TextBlock>
-                <TextBlock Grid.Column="1" Grid.Row="2" Text="name"></TextBlock>
-                <TextBlock Grid.Column="1" Grid.Row="3" Text="patronymic"></TextBlock>
-                <TextBlock Grid.Column="1" Grid.Row="4" Text="birthdate"></TextBlock>
-                <TextBlock Grid.Column="1" Grid.Row="5" Text="age"></TextBlock>
+                <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Id}"></TextBlock>
+                <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding SurName}"></TextBox>
+                <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Name}"></TextBox>
+                <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding Patronymic}"></TextBox>
+                <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding DayOfBirth }"></TextBox>
+                <TextBlock Grid.Column="1" Grid.Row="5" Text="{Binding Age}"></TextBlock>
             </Grid>
         </GroupBox>
     </Grid>

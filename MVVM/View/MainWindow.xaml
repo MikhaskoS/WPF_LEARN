@@ -1,11 +1,11 @@
 ﻿<Window x:Class="MVVM.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MVVM"
-        mc:Ignorable="d"
         Title="MainWindow" Height="254.137" Width="626.799">
+    
     <Window.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="FontSize" Value="14" />
@@ -41,6 +41,7 @@
         </ListBox>
         <StackPanel Grid.Row="1" Orientation="Horizontal">
             <Button Command="{Binding AddCommand}">+</Button>
+            <Button Command="{Binding NewWindow}"  Width="98" Content="Еще пример"/>
         </StackPanel>
 
         <StackPanel Grid.Column="1" DataContext="{Binding SelectedPhone}">
@@ -52,5 +53,7 @@
             <TextBlock Text="Цена" />
             <TextBox Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
+        
+        
     </Grid>
 </Window>
