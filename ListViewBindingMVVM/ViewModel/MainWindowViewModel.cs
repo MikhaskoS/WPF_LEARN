@@ -9,6 +9,7 @@ namespace ListViewBindingMVVM.ViewModel
         private string _title = "Заголовок окна";
         private ObservableCollection<EmployeeViewModel> _employees =
             new ObservableCollection<EmployeeViewModel>();
+        private ObservableCollection<DepartamentViewModel> _department;
         private EmployeeViewModel _selectedEmploye;
 
         public string Title
@@ -20,6 +21,11 @@ namespace ListViewBindingMVVM.ViewModel
         {
             get => _employees;
             set => Set(ref _employees, value);
+        }
+        public ObservableCollection<DepartamentViewModel> Departaments
+        {
+            get => _department;
+            set => Set(ref _department, value);
         }
         public EmployeeViewModel SelectedEmploye
         {
@@ -38,6 +44,9 @@ namespace ListViewBindingMVVM.ViewModel
                 DayOfBirth = DateTime.Now.Subtract(TimeSpan.FromDays(365 / 6 * (i + 18)))
             }))
                 _employees.Add(employee);
+
+            _department = new ObservableCollection<DepartamentViewModel>(
+                Enumerable.Range(1,10).Select(i => new DepartamentViewModel { Name =$"Отдел{i}"}));
         }
     }
 }

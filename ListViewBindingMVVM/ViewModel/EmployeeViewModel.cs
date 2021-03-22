@@ -8,6 +8,7 @@ namespace ListViewBindingMVVM.ViewModel
         private string _surName;
         private string _patronymic;
         private DateTime _dayOfBirth;
+        private DepartamentViewModel _departament;
 
         public int Id { get; set; }
 
@@ -33,6 +34,12 @@ namespace ListViewBindingMVVM.ViewModel
             // Нам нужно, чтобы при изменении даты рождения менялся возраст
             set { if(Set(ref _dayOfBirth, value))
                     OnPropertyChanged(nameof(Age)); }
+        }
+
+        public DepartamentViewModel Departament
+        {
+            get => _departament;
+            set => Set(ref _departament, value);
         }
 
         public int Age => (int)Math.Floor((DateTime.Now - DayOfBirth).TotalDays / 365);
