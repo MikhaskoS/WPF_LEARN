@@ -1,57 +1,46 @@
-﻿<Window x:Class="ListViewBinding.MainWindow"
+﻿<Window x:Class="ListViewBindingMVVM.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"   mc:Ignorable="d"
-        xmlns:data="clr-namespace:ListViewBinding.Data"
-        xmlns:model="clr-namespace:ListViewBinding.Models"
-        xmlns:local="clr-namespace:ListViewBinding"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid >
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+        xmlns:local="clr-namespace:ListViewBindingMVVM"
+        xmlns:vm="clr-namespace:ListViewBindingMVVM.ViewModel"
+        Title="{Binding Title}" Height="450" Width="800">
+    <Window.DataContext>
+        <vm:MainWindowViewModel></vm:MainWindowViewModel>
+    </Window.DataContext>
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
-        
+
         <GroupBox Grid.Column="0" Header="Сотрудники" Margin="5">
-            <!--<ListView x:Name="EmployeeList" 
-                      ItemsSource="{x:Static data:TestData.Employees}" 
-                      DisplayMemberPath="Name">
-            </ListView>-->
-            <ListView x:Name="EmployeeList" 
-                      ItemsSource="{x:Static data:TestData.Employees}" >
-                <ListView.ItemTemplate>
-                    <!--Указав тип, мы получим подсказки VS-->
-                    <DataTemplate DataType="model:Employe">
-                        <Border BorderThickness="1" BorderBrush="DarkCyan" CornerRadius="4" 
-                                Padding="3" Margin="0.5" Background="Wheat">
-                            <Border.Effect>
-                                <DropShadowEffect></DropShadowEffect>
-                            </Border.Effect>
-                            <StackPanel ToolTip="{Binding DayOfBirth}">
-                                <TextBlock Text="{Binding Id, StringFormat=id:{0}}"></TextBlock>
-                                <TextBlock Text="{Binding SurName, StringFormat=Фамилия:{0}}"></TextBlock>
-                                <TextBlock Text="{Binding Name, StringFormat=Имя:{0}}"></TextBlock>
-                                <TextBlock Text="{Binding Patronymic, StringFormat=Отчество:{0}}"></TextBlock>
-                            </StackPanel>
-                        </Border>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+            <DockPanel>
+                <!--Все ячейки одинакового размера-->
+                <UniformGrid DockPanel.Dock="Bottom" Rows="1">
+                    <Button Content="Добавить"></Button>
+                    <Button Content="Удалить"></Button>
+                </UniformGrid>
+                <ListBox ItemsSource="{Binding Employees}" SelectedItem="{Binding SelectedEmploye}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate DataType="mv:EmployeeViewModel">
+                            <TextBlock>
+                                  <TextBlock Text="{Binding SurName}"></TextBlock> : <TextBlock Text="{Binding Name }"></TextBlock>
+                                  (<TextBlock Text="{Binding Departament.Name, TargetNullValue=[null], FallbackValue=[--]}"></TextBlock>)
+                              </TextBlock>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </DockPanel>
         </GroupBox>
-        
+
         <!-- Свойство DataContext связывает текущий GroupBox с элементом коллекции 
         В данном случае DataContext установлен на уровне объекта
-        d:DataContext - вручную указываем для VS тип данныx для удобства работы--> 
-        <GroupBox Grid.Column="1" Header="Информация о сотрудниках" Margin="5" 
-                  DataContext="{Binding SelectedItem, ElementName=EmployeeList}" 
-                  d:DataContext="{d:DesignInstance {x:Type model:Employee}}">
-            <Grid>
+        d:DataContext - вручную указываем для VS тип данныx для удобства работы-->
+        <GroupBox Grid.Column="1" Header="Информация о сотрудниках" Margin="5">
+            <Grid DataContext="{Binding SelectedEmploye}">
                 <Grid.Resources>
-                    <!--<Style TargetType="TextBlock">
-                        <Setter Property="FontWeight" Value="Bold"></Setter>
-                        <Setter Property="HorizontalAlignment"  Value="Right"></Setter>
-                    </Style>-->
                     <Style TargetType="TextBlock">
                         <Style.Triggers>
                             <Trigger Property="Grid.Column" Value="0">
@@ -73,6 +62,7 @@
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
 
                 <TextBlock Grid.Column="0" Grid.Row="0" Text="ID: "></TextBlock>
@@ -81,16 +71,26 @@
                 <TextBlock Grid.Column="0" Grid.Row="3" Text="Отчество: "></TextBlock>
                 <TextBlock Grid.Column="0" Grid.Row="4" Text="Дата рождения: "></TextBlock>
                 <TextBlock Grid.Column="0" Grid.Row="5" Text="Возраст: "></TextBlock>
+                <TextBlock Grid.Column="0" Grid.Row="6" Text="Отдел: "></TextBlock>
 
                 <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Id}"></TextBlock>
                 <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding SurName}"></TextBox>
                 <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Name}"></TextBox>
                 <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding Patronymic}"></TextBox>
-                <!--<TextBox Grid.Column="1" Grid.Row="4" Text="{Binding DayOfBirth }"></TextBox>-->
                 <Calendar Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" 
-                          DisplayDate="{Binding DayOfBirth }" SelectedDate="{Binding DayOfBirth }"></Calendar>
+                          DisplayDate="{Binding DayOfBirth }" SelectedDate="{Binding DayOfBirth }"/>
                 <TextBlock Grid.Column="1" Grid.Row="5" Text="{Binding Age}"></TextBlock>
+                <!-- Обрати внимание: нам нужны департаменты, а наш DataContext  SelectedEmploye
+                поэтому ищем элемент на уровне выше в GroupBox!
+                Смотри как выводятся данные -->
+                <ComboBox Grid.Column="1" Grid.Row="6" 
+                          SelectedItem="{Binding Departament}"
+                          ItemsSource="{Binding DataContext.Departaments, 
+                                       RelativeSource={RelativeSource AncestorType=GroupBox}}"
+                          DisplayMemberPath="Name"/>
             </Grid>
         </GroupBox>
+        <GridSplitter Grid.Column="1" VerticalAlignment="Stretch" 
+                      HorizontalAlignment="Left" Width="3" Background="Transparent"/>
     </Grid>
 </Window>

@@ -17,12 +17,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVVM", "MVVM\MVVM.csproj", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenGL", "OpenGL\OpenGL.csproj", "{12606596-C2A6-4ED7-B045-B27D4A324034}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListViewBinding", "ListViewBinding\ListViewBinding.csproj", "{A75FC4CC-004D-4C06-AE12-1E8EDFF4B788}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ListViewBinding", "ListViewBinding\ListViewBinding.csproj", "{A75FC4CC-004D-4C06-AE12-1E8EDFF4B788}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0A2DDD01-0DD1-4A96-BE93-E90F82A09AF2}"
 	ProjectSection(SolutionItems) = preProject
 		ReadMe.txt = ReadMe.txt
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListViewBindingMVVM", "ListViewBindingMVVM\ListViewBindingMVVM.csproj", "{88495C7C-79A7-4F8F-B141-B8B8BEC1F39C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -62,6 +64,10 @@ Global
 		{A75FC4CC-004D-4C06-AE12-1E8EDFF4B788}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A75FC4CC-004D-4C06-AE12-1E8EDFF4B788}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A75FC4CC-004D-4C06-AE12-1E8EDFF4B788}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88495C7C-79A7-4F8F-B141-B8B8BEC1F39C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88495C7C-79A7-4F8F-B141-B8B8BEC1F39C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88495C7C-79A7-4F8F-B141-B8B8BEC1F39C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88495C7C-79A7-4F8F-B141-B8B8BEC1F39C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
