@@ -54,6 +54,5 @@
             <TextBox Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
         
-        
     </Grid>
 </Window>

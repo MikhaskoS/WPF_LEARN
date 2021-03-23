@@ -14,8 +14,8 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <Button Content="Button" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
-                Width="175" Height="100" RenderTransformOrigin="0.5, 0.5">
+        <Button Content="Анимированная кнопка" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="288,103,313,216" 
+                Width="191" Height="100" RenderTransformOrigin="0.5, 0.5">
             <Button.RenderTransform>
                 <RotateTransform Angle="0" x:Name="RotateTransform"></RotateTransform>
             </Button.RenderTransform>
@@ -56,7 +56,7 @@
             <ProgressBar Width="120" Height="10" Value="30" Margin="15,0,0,0"></ProgressBar>
         </StatusBar>
         <!--Кнопка со встроенным стилем-->
-        <Button Content="Button" HorizontalAlignment="Left" Margin="143,320,0,0" VerticalAlignment="Top" Width="75">
+        <Button Content="Встроенный стиль" HorizontalAlignment="Left" Margin="96,320,0,0" VerticalAlignment="Top" Width="122">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="Background" Value="Red"></Setter>
@@ -64,8 +64,8 @@
             </Button.Style>
         </Button>
         <!--Кнопка со стилем, встроенным в окно-->
-        <Button Content="Button" HorizontalAlignment="Left" Margin="266,320,0,0" 
-                VerticalAlignment="Top" Width="75"
+        <Button Content="Стиль задан в окне" HorizontalAlignment="Left" Margin="242,320,0,0" 
+                VerticalAlignment="Top" Width="130"
                 Style="{StaticResource BlueButtonStyle}">
         </Button>
 
@@ -81,10 +81,10 @@
             <Button Content="Button" HorizontalAlignment="Left" Margin="401,284,0,0" VerticalAlignment="Top" Width="75"/>
 
         </Grid>
-        
+
         <!--Стиль из словаря ресурсов-->
-        <Button Content="Button" HorizontalAlignment="Left" Margin="549,320,0,0" 
-                    VerticalAlignment="Top" Width="75"
+        <Button Content="Стиль из словаря ресурсов" HorizontalAlignment="Left" Margin="549,320,0,0" 
+                    VerticalAlignment="Top" Width="184"
                     Style="{StaticResource GreenButtonStyle}"/>
 
     </Grid>
