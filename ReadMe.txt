@@ -8,3 +8,7 @@
 :: ListViewBindingMVVM ::
 Раширение предыдущего примера.
 ListView заменен на ListBox
+
+
+:: WpfBehaviors ::
+Демонстрация пакета Microsoft.Xaml.Behaviors.Wpf  (NuGet)
