@@ -15,6 +15,7 @@
         <local:WinBehaviors x:Name="WinMouseMoveBehaviour"></local:WinBehaviors>
     </i:Interaction.Behaviors>
     <Grid >
+        <!--Привязка свойства к событию-->
         <TextBox HorizontalAlignment="Left" Margin="28,79,0,0" 
                  Text="{Binding PosX,  ElementName=WinMouseMoveBehaviour }" 
                  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>

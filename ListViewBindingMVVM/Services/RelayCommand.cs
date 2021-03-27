@@ -18,18 +18,20 @@ namespace MVVM
 
     class RelayCommand : Command
     {
-        private readonly Action<object> _execute;
+        private readonly Action<object> _execute;        
         private readonly Func<object, bool> _canExecute;
 
-        // 
+        // выполняемое действие execute и возможность его выполнения canExecute
         public RelayCommand(Action<object> execute, Func<object, bool> canExecute = null)
         {
-            if (_execute is null)
-                throw new ArgumentNullException(nameof(_execute));
+            if (execute is null)
+                throw new ArgumentNullException(nameof(execute));
             _execute = execute;
             _canExecute = canExecute;
         }
 
+
+        // true - элемент включается, false - выключается
         public override bool CanExecute(object parameter)
         {
             //return _canExecute == null || _canExecute(parameter);

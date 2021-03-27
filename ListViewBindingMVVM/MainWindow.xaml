@@ -19,8 +19,10 @@
             <DockPanel>
                 <!--Все ячейки одинакового размера-->
                 <UniformGrid DockPanel.Dock="Bottom" Rows="1">
-                    <Button Content="Добавить"></Button>
-                    <Button Content="Удалить"></Button>
+                    <Button Content="Добавить" Command="{Binding CreateEmployeeCommand}"/>
+                    <Button Content="Удалить" 
+                            Command="{Binding RemoveEmployeeCommand}"
+                            CommandParameter="{Binding SelectedEmploye}"/>
                 </UniformGrid>
                 <ListBox ItemsSource="{Binding Employees}" SelectedItem="{Binding SelectedEmploye}">
                     <ListBox.ItemTemplate>

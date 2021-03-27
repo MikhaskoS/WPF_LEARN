@@ -1,7 +1,8 @@
-﻿using System;
+﻿using MVVM;
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-
+using System.Windows.Input;
 
 namespace ListViewBindingMVVM.ViewModel
 {
@@ -34,6 +35,35 @@ namespace ListViewBindingMVVM.ViewModel
             set => Set(ref _selectedEmploye, value);
         }
 
+        #region Commands
+
+        public ICommand CreateEmployeeCommand { get; }
+        private void OnCreateEmployeeCommand(object param)
+        {
+            var new_employe = new EmployeeViewModel
+            {
+                Name  = "NewEmployeeName"
+            };
+            _employees.Insert(0, new_employe);
+            SelectedEmploye = new_employe;
+        }
+        private bool CanCreateEmployeeCommand(object param)
+        { return true; }
+        public ICommand RemoveEmployeeCommand { get; }
+        private void OnRemoveEmployeeCommand(object param)
+        {
+            if (!(param is EmployeeViewModel employee)) return;
+            _employees.Remove(employee);
+            if (ReferenceEquals(_selectedEmploye, employee))
+                SelectedEmploye = null;
+        }
+        private bool CanRemoveEmployeeCommand(object param)
+        { 
+            return (param is EmployeeViewModel); 
+        }
+
+        #endregion
+
         public MainWindowViewModel()
         {
             foreach (var employee in Enumerable.Range(1, 100).Select(i => new EmployeeViewModel
@@ -48,6 +78,10 @@ namespace ListViewBindingMVVM.ViewModel
 
             _department = new ObservableCollection<DepartamentViewModel>(
                 Enumerable.Range(1,10).Select(i => new DepartamentViewModel { Name =$"Отдел{i}"}));
+
+
+            CreateEmployeeCommand = new RelayCommand(OnCreateEmployeeCommand, CanCreateEmployeeCommand);
+            RemoveEmployeeCommand = new RelayCommand(OnRemoveEmployeeCommand, CanRemoveEmployeeCommand);
         }
     }
 }
