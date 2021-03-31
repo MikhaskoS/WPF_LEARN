@@ -1,7 +1,4 @@
-﻿using OpenTK.Graphics.OpenGL;
-using OpenTK.Mathematics;
-using OpenTK.Wpf;
-using System;
+﻿using OpenGL.Sample;
 using System.Windows;
 
 
@@ -15,34 +12,18 @@ namespace OpenGL
         public MainWindow()
         {
             InitializeComponent();
-
-            var settings = new GLWpfControlSettings
-            {
-                MajorVersion = 2,
-                MinorVersion = 1
-            };
-            OpenTkControl.Start(settings);
         }
 
-        private void OpenTkControl_OnRender(TimeSpan delta)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            GL.ClearColor(Color4.Blue);
-            GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
+            OpenGLV1 win = new OpenGLV1();
+            win.Show();
+        }
 
-            GL.LoadIdentity();
-            GL.Begin(PrimitiveType.Triangles);
-
-            GL.Color4(Color4.Red);
-            GL.Vertex2(0.0f, 0.5f);
-
-            GL.Color4(Color4.Green);
-            GL.Vertex2(0.58f, -0.5f);
-
-            GL.Color4(Color4.Blue);
-            GL.Vertex2(-0.58f, -0.5f);
-
-            GL.End();
-            GL.Finish();
+        private void Button_Click_V4(object sender, RoutedEventArgs e)
+        {
+            OpenGLV4 win = new OpenGLV4();
+            win.Show();
         }
     }
 }

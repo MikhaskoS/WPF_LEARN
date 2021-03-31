@@ -1,15 +1,13 @@
 ﻿<Window x:Class="OpenGL.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"    mc:Ignorable="d"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:glWpfControl="clr-namespace:OpenTK.Wpf;assembly=GLWpfControl"
         xmlns:local="clr-namespace:OpenGL"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="180" WindowStartupLocation="CenterScreen">
     <Grid>
-        <glWpfControl:GLWpfControl 
-            x:Name="OpenTkControl" 
-            Render="OpenTkControl_OnRender"/>
+        <Button Content="OpenGLV1" HorizontalAlignment="Center" Width="100" Height="50"
+                VerticalAlignment="Top" Click="Button_Click"/>
+        <Button Content="OpenGLV2" Width="100" Height="50" Click="Button_Click_V4"></Button>
     </Grid>
 </Window>
