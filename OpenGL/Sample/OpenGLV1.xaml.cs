@@ -26,7 +26,23 @@ namespace OpenGL.Sample
 
         private void OpenTkControl_OnRender(TimeSpan delta)
         {
-           
+            GL.ClearColor(Color4.Blue);
+            GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
+
+            GL.LoadIdentity();
+            GL.Begin(PrimitiveType.Triangles);
+
+            GL.Color4(Color4.Red);
+            GL.Vertex2(0.0f, 0.5f);
+
+            GL.Color4(Color4.Green);
+            GL.Vertex2(0.58f, -0.5f);
+
+            GL.Color4(Color4.Blue);
+            GL.Vertex2(-0.58f, -0.5f);
+
+            GL.End();
+            GL.Finish();
         }
     }
     
