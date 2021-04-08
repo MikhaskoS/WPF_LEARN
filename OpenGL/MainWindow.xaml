@@ -5,9 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OpenGL"
         Title="MainWindow" Height="450" Width="180" WindowStartupLocation="CenterScreen">
-    <Grid>
-        <Button Content="OpenGLV1" HorizontalAlignment="Center" Width="100" Height="50"
-                VerticalAlignment="Top" Click="Button_Click"/>
-        <Button Content="OpenGLV2" Width="100" Height="50" Click="Button_Click_V4"></Button>
-    </Grid>
+    <StackPanel>
+        <Button Content="OpenGLV1" HorizontalAlignment="Center" Width="100" Height="50" Click="Button_Click" Margin="2"/>
+        <Button Content="OpenGLV2" Width="100" Height="50" Click="Button_Click_V4" Margin="2"/>
+    </StackPanel>
 </Window>

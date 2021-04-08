@@ -17,3 +17,6 @@ ListView заменен на ListBox
 :: WpfBehaviors ::
 Демонстрация пакета Microsoft.Xaml.Behaviors.Wpf  (NuGet)
 Работа с событиями в рамках MVVM
+
+:: OpenGL ::
+Папка Shader размещена в \Debug\net5.0-windows 

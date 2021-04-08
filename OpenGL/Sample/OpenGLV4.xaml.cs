@@ -2,6 +2,7 @@
 using OpenTK.Graphics.OpenGL4;
 using OpenTK.Wpf;
 using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
 
@@ -13,6 +14,14 @@ namespace OpenGL.Sample
     public partial class OpenGLV4 : Window
     {
         private Shader _shader;
+        private float[] _vertices =
+        {
+            -0.5f, -0.5f, 0.0f, // Bottom-left vertex
+             0.5f, -0.5f, 0.0f, // Bottom-right vertex
+             0.0f,  0.5f, 0.0f  // Top vertex
+        };
+        private int _vertexBufferObject;
+        private int _vertexArrayObject;
 
         public OpenGLV4()
         {
@@ -26,31 +35,19 @@ namespace OpenGL.Sample
             OnLoad();
         }
 
-        private  float[] _vertices =
+     
+        protected override void OnClosing(CancelEventArgs e)
         {
-            -0.5f, -0.5f, 0.0f, // Bottom-left vertex
-             0.5f, -0.5f, 0.0f, // Bottom-right vertex
-             0.0f,  0.5f, 0.0f  // Top vertex
-        };
-        private int _vertexBufferObject;
-        private int _vertexArrayObject;
+            base.OnClosing(e);
+            OnUnload();
+        }
 
         protected override void OnKeyDown(KeyEventArgs e)
         {
             base.OnKeyDown(e);
             if (e.Key == Key.Space)
             {
-                 _vertices = new float[] {
-                    -1.5f,
-                    -0.5f,
-                    0.0f, // Bottom-left vertex
-                    0.5f,
-                    -0.5f,
-                    0.0f, // Bottom-right vertex
-                    0.0f,
-                    0.5f,
-                    0.0f  // Top vertex};  
-                };
+               
             }
         }
 
@@ -66,6 +63,8 @@ namespace OpenGL.Sample
             _vertexArrayObject = GL.GenVertexArray();
             GL.BindVertexArray(_vertexArrayObject);
 
+            // layout(location = 0) in vec3 aPosition;  поэтому 1 параметр - 0
+            // vec - второй параметр - 3
             GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 3 * sizeof(float), 0);
 
             GL.EnableVertexAttribArray(0);
@@ -74,6 +73,8 @@ namespace OpenGL.Sample
 
             _shader.Use();
         }
+
+       
 
         protected void OnUnload()
         {
@@ -93,7 +94,7 @@ namespace OpenGL.Sample
         {
             GL.Clear(ClearBufferMask.ColorBufferBit);
 
-            _shader.Use();
+            //_shader.Use();
 
             GL.BindVertexArray(_vertexArrayObject);
 
